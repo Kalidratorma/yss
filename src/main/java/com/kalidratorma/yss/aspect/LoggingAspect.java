@@ -23,16 +23,16 @@ public class LoggingAspect {
         Logger logger = LoggerFactory.getLogger(methodSignature.getClass());
         List<String> params = List.of(methodSignature.getParameterNames());
         if (params.isEmpty()) {
-            logger.info("SiteController method " + methodName + " called");
+            logger.info("PlayerController method " + methodName + " called");
         } else {
             StringBuffer paramsStringBuffer = new StringBuffer();
             params.forEach(s -> paramsStringBuffer.append(s).append("=[{}],"));
-            logger.info("SiteController method " + methodName + " called with params "
+            logger.info("PlayerController method " + methodName + " called with params "
                             + paramsStringBuffer.deleteCharAt(paramsStringBuffer.length() - 1),
                     joinPoint.getArgs());
         }
         Object targetMethodResult = joinPoint.proceed();
-        logger.info("SiteController method " + methodName + " ended");
+        logger.info("PlayerController method " + methodName + " ended");
         return targetMethodResult;
     }
 }
