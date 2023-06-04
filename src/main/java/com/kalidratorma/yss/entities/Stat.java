@@ -19,7 +19,12 @@ import java.util.Date;
 @Table(name = "stat")
 public class Stat {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="stat_seq")
+    @SequenceGenerator(
+            name="stat_seq",
+            sequenceName="stat_seq",
+            allocationSize=1
+    )
     @Column(name = "id", updatable = false)
     private Long id;
 

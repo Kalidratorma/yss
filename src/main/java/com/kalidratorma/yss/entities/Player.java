@@ -1,7 +1,6 @@
 package com.kalidratorma.yss.entities;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +21,12 @@ import java.util.List;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="player_seq")
+    @SequenceGenerator(
+            name="player_seq",
+            sequenceName="player_seq",
+            allocationSize=1
+    )
     @Column(name = "id", updatable = false)
     private Long id;
 
@@ -49,8 +53,7 @@ public class Player {
     /**
      * Родители
      */
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "players")
-    @JsonManagedReference
+    @OneToMany
     private List<Parent> parents;
 
     /**

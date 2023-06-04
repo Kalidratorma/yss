@@ -18,10 +18,15 @@ import java.util.Date;
 @Table(name = "physiology")
 public class Physiology {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="physiology_seq")
+    @SequenceGenerator(
+            name="physiology_seq",
+            sequenceName="physiology_seq",
+            allocationSize=1
+    )
     @Column(name = "id", updatable = false)
     private Long id;
-
+    
     /**
      * Дата
      */

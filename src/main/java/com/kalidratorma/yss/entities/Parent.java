@@ -19,7 +19,12 @@ import java.util.List;
 public class Parent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="parent_seq")
+    @SequenceGenerator(
+            name="parent_seq",
+            sequenceName="parent_seq",
+            allocationSize=1
+    )
     @Column(name = "id", updatable = false)
     private Long id;
 
@@ -63,8 +68,4 @@ public class Parent {
      * Пароль
      */
     private String password;
-
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Player> players;
 }
