@@ -1,0 +1,30 @@
+server:
+  port: 8000
+  error:
+    include-message: always
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: yss
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    #    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    #    properties:
+    #      hibernate:
+    #        format_sql: true
+    database: postgresql
+    database_platform: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+jwt_secret_key: ${JWT_SECRET_KEY}
+RESOURCES_DIR: /app/storage
