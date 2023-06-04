@@ -38,15 +38,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/error/**")
-                        .permitAll()
-                        .requestMatchers("/actuator/**")
-                        .permitAll()
+                .securityMatchers((matchers) -> matchers
+                        .requestMatchers("/api/**")
                         .requestMatchers("/auth/*")
-                        .permitAll()
+                        .requestMatchers("/oauth/**")
+                        .requestMatchers("/error/**")
                         .requestMatchers(HttpMethod.GET, "/player/*", "/player/*/files/*", "/playerAsFile/*")
-                        .permitAll()
+                )
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/player/*", "/player/*/files/*", "/playerAsFile/*", "/auth/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/player").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/player", "/user/**").hasAuthority("ADMIN")
