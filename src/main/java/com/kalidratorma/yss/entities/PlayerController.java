@@ -39,18 +39,21 @@ public class PlayerController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/player/{playerName}")
-    public Player readPlayer(@PathVariable String playerName) {
-        return playerRepository.findByName(playerName).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
-        );
-    }
+//    @GetMapping("/player/{playerName}")
+//    public Player readPlayer(@PathVariable String playerName) {
+//        return playerRepository.findByName(playerName).orElseThrow(
+//                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+//        );
+//    }
 
     @GetMapping("/player/{id}")
-    public Player readPlayerById(@PathVariable long id) {
-        return playerRepository.findById(id).orElseThrow(
+    public MappingJacksonValue readPlayer(@PathVariable long id) {
+        Player player = playerRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+
+        return getFilteredMapper(player, "PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAllExcept("contract"));
     }
 
     @PutMapping("/player")
