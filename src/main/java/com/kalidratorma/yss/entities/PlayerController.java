@@ -47,7 +47,7 @@ public class PlayerController {
     }
 
     @GetMapping("/player/{id}")
-    public Player readPlayer(@PathVariable long id) {
+    public Player readPlayerById(@PathVariable long id) {
         return playerRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
