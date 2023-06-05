@@ -19,3 +19,15 @@ values (2, 'Иванова', 'Лариса', 'Ивановна', 'FEMALE', '+7 (
 
 insert into player_parents (player_id, parents_id)
 values (1,1), (1,2);
+
+insert into physiology (id, "date", grip, height, weight)
+values (1, '2023-06-04', 'RIGHT', 1200, 30000);
+
+insert into player_physiology_list (player_id, physiology_list_id)
+values (1,1);
+
+insert into stat (id, "date", goal, assist, penalty, points)
+values (1, '2023-06-04', 10, 55, 20, 322);
+
+insert into player_stats (player_id, stats_id)
+values (1,1);

@@ -46,6 +46,13 @@ public class PlayerController {
         );
     }
 
+    @GetMapping("/player/{id}")
+    public Player readPlayer(@PathVariable long id) {
+        return playerRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+    }
+
     @PutMapping("/player")
     public ResponseEntity<String> updatePlayer(@RequestBody Player player) {
         Player origPlayer = playerRepository.findByName(player.getName()).orElseThrow(
