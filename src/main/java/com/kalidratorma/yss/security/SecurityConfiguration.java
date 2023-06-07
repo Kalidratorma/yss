@@ -40,10 +40,12 @@ public class SecurityConfiguration {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/oauth/**").permitAll()
-                                .requestMatchers("/error/**").permitAll()
-                                .requestMatchers("/task/**").permitAll()
+                                .requestMatchers("/**").permitAll()
+//                                .requestMatchers("/oauth/**").permitAll()
+//                                .requestMatchers("/error/**").permitAll()
+//                                .requestMatchers("/actuator/**").permitAll()
+//                                .requestMatchers("/player/**").permitAll()
+//                                .requestMatchers("/task/**").permitAll()
                 )
                 .authorizeHttpRequests(auth -> auth
 //                        .requestMatchers(HttpMethod.GET, "/player/*", "/player/*/files/*", "/playerAsFile/*", "/auth/**").authenticated()
