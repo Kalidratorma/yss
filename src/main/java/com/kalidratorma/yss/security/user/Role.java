@@ -1,8 +1,7 @@
 package com.kalidratorma.yss.security.user;
 
 public enum Role {
-    USER,
+    CLIENT,
     ADMIN,
-    SITE,
-    MODERATOR
+    COACH
 }

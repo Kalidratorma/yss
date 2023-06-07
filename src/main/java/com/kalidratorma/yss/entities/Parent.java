@@ -1,5 +1,6 @@
 package com.kalidratorma.yss.entities;
 
+import com.kalidratorma.yss.security.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,23 +50,14 @@ public class Parent {
     private String phoneNumber;
 
     /**
-     * Почта
-     */
-    private String email;
-
-    /**
      * Пол
      */
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
     /**
-     * Логин
+     * Пользователь
      */
-    private String login;
-
-    /**
-     * Пароль
-     */
-    private String password;
+    @OneToOne
+    private User user;
 }

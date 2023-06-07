@@ -35,12 +35,12 @@ public class Physiology {
     /**
      * Рост (в миллиметрах)
      */
-    private short height;
+    private int height;
 
     /**
      * Вес (в граммах)
      */
-    private short weight;
+    private int weight;
 
     /**
      * Хват

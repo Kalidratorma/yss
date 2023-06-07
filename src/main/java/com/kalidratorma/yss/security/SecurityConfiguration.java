@@ -38,12 +38,12 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .securityMatchers((matchers) -> matchers
-                        .requestMatchers("/api/**")
-                        .requestMatchers("/auth/*")
-                        .requestMatchers("/oauth/**")
-                        .requestMatchers("/error/**")
-                        //.requestMatchers(HttpMethod.GET, "/player/*", "/player/*/files/*", "/playerAsFile/*")
+                .authorizeHttpRequests((authorizeHttpRequests) ->
+                        authorizeHttpRequests
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/oauth/**").permitAll()
+                                .requestMatchers("/error/**").permitAll()
+                                .requestMatchers("/task/**").permitAll()
                 )
                 .authorizeHttpRequests(auth -> auth
 //                        .requestMatchers(HttpMethod.GET, "/player/*", "/player/*/files/*", "/playerAsFile/*", "/auth/**").authenticated()

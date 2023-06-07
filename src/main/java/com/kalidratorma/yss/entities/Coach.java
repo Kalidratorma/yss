@@ -1,13 +1,12 @@
 package com.kalidratorma.yss.entities;
 
+import com.kalidratorma.yss.security.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -48,25 +47,10 @@ public class Coach {
     private String phoneNumber;
 
     /**
-     * Почта
-     */
-    private String email;
-
-    /**
      * Пол
      */
     @Enumerated(EnumType.STRING)
     private Sex sex;
-
-    /**
-     * Логин
-     */
-    private String login;
-
-    /**
-     * Пароль
-     */
-    private String password;
 
     /**
      * Образование
@@ -84,4 +68,9 @@ public class Coach {
      */
     private String coachType;
 
+    /**
+     * Пользователь
+     */
+    @OneToOne
+    private User user;
 }
