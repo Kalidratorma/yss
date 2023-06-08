@@ -3,6 +3,7 @@ package com.kalidratorma.yss.entities;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.kalidratorma.yss.security.user.User;
 import com.kalidratorma.yss.security.user.UserRepository;
+import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,8 @@ public class PlayerController {
     @GetMapping("/player")
     public MappingJacksonValue readPlayers() {
         List<Player> playerList = playerRepository.findAll();
-        return getFilteredMapper(playerList, "PlayerFilter",
-                SimpleBeanPropertyFilter.serializeAllExcept("contract"));
+        return getFilteredMapper(playerList, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAllExcept("contract")));
     }
 
     @PostMapping("/player")
@@ -52,8 +53,8 @@ public class PlayerController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
 
-        return getFilteredMapper(player, "PlayerFilter",
-                SimpleBeanPropertyFilter.serializeAllExcept("contract"));
+        return getFilteredMapper(player, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAllExcept("contract")));
     }
 
     @PutMapping("/player")
@@ -90,8 +91,8 @@ public class PlayerController {
                 , "attachment; filename=" + id + ".json");
         responseHeaders.add("content-type"
                 , "application/json");
-        return new ResponseEntity<>(getFilteredMapper(player, "PlayerFilter"
-                , SimpleBeanPropertyFilter.serializeAll())
+        return new ResponseEntity<>(getFilteredMapper(player, new CustomFilter("PlayerFilter",
+                        SimpleBeanPropertyFilter.serializeAll()))
                 , responseHeaders, HttpStatus.OK);
     }
 }

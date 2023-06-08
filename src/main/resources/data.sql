@@ -114,11 +114,17 @@ values (1, 'https://youtu.be/4yGyX4nxRUk');
 insert into link (id, url)
 values (2, 'http://www.offsport.ru/hockey/images/28.png');
 
+insert into link (id, url)
+values (3, '');
+
+insert into link (id, url)
+values (4, '');
+
 insert into task_video_links (task_id, video_links_id)
-values (1, 1);
+values (1, 1), (1, 3);
 
 insert into task_photo_links (task_id, photo_links_id)
-values (1, 2);
+values (1, 2), (1, 4);
 
 insert into just_date ("date")
 values ('2023-06-19');

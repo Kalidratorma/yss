@@ -1,6 +1,7 @@
 package com.kalidratorma.yss.entities;
 
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,9 @@ public class TaskController {
     @GetMapping
     public MappingJacksonValue readTasks() {
         List<Task> taskList = taskRepository.findAll();
-        return getFilteredMapper(taskList, "PlayerFilter",
-                SimpleBeanPropertyFilter.filterOutAllExcept("id", "surname", "name", "patronymic", "birthDate"));
+        return getFilteredMapper(taskList, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.filterOutAllExcept("id", "surname", "name", "patronymic", "birthDate")),
+                new CustomFilter("TaskFilter", SimpleBeanPropertyFilter.serializeAll()));
 
     }
 
@@ -60,8 +62,8 @@ public class TaskController {
     @GetMapping("/player/{playerId}")
     public MappingJacksonValue readPlayerTask(@PathVariable long playerId) {
         List<Task> taskList = taskRepository.findAllByPlayerId(playerId);
-        return getFilteredMapper(taskList, "TaskFilter",
-                SimpleBeanPropertyFilter.serializeAllExcept("players"));
+        return getFilteredMapper(taskList, new CustomFilter("TaskFilter",
+                SimpleBeanPropertyFilter.serializeAllExcept("players")));
     }
 
 }
