@@ -1,5 +1,6 @@
 package com.kalidratorma.yss.entities;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +10,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+/**
+ * Задание тренера
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -16,9 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "task")
-/**
- * Задания тренера
- */
+@JsonFilter("TaskFilter")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="task_seq")

@@ -15,11 +15,12 @@ import static com.kalidratorma.yss.utils.ControllerUtils.getFilteredMapper;
 @RestController
 @CrossOrigin(originPatterns = "*")
 @RequiredArgsConstructor
+@RequestMapping("/task")
 public class TaskController {
 
     private final TaskRepository taskRepository;
 
-    @GetMapping("/task")
+    @GetMapping
     public MappingJacksonValue readTasks() {
         List<Task> taskList = taskRepository.findAll();
         return getFilteredMapper(taskList, "PlayerFilter",
@@ -27,20 +28,20 @@ public class TaskController {
 
     }
 
-    @PostMapping("/task")
+    @PostMapping
     public ResponseEntity<String> createTask(@RequestBody Task task) {
         taskRepository.save(task);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/task/{id}")
+    @GetMapping("/{id}")
     public Task readTask(@PathVariable long id) {
         return taskRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
     }
 
-    @PutMapping("/task")
+    @PutMapping
     public ResponseEntity<String> updateTask(@RequestBody Task task) {
         Task origTask = taskRepository.findById(task.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
@@ -49,16 +50,18 @@ public class TaskController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/task/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTask(@PathVariable long id) {
         Task origTask = taskRepository.findById(id).orElseThrow();
         taskRepository.deleteById(origTask.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/player_tasks/{playerId}")
-    public List<Task> readPlayerTask(@PathVariable long playerId) {
-        return taskRepository.findAllByPlayerId(playerId);
+    @GetMapping("/player/{playerId}")
+    public MappingJacksonValue readPlayerTask(@PathVariable long playerId) {
+        List<Task> taskList = taskRepository.findAllByPlayerId(playerId);
+        return getFilteredMapper(taskList, "TaskFilter",
+                SimpleBeanPropertyFilter.serializeAllExcept("players"));
     }
 
 }
