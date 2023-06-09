@@ -1,6 +1,8 @@
-package com.kalidratorma.yss.entities;
+package com.kalidratorma.yss.controllers;
 
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.kalidratorma.yss.entities.Task;
+import com.kalidratorma.yss.repositories.TaskRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

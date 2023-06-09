@@ -1,6 +1,8 @@
-package com.kalidratorma.yss.entities;
+package com.kalidratorma.yss.controllers;
 
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.kalidratorma.yss.entities.Player;
+import com.kalidratorma.yss.repositories.PlayerRepository;
 import com.kalidratorma.yss.security.user.User;
 import com.kalidratorma.yss.security.user.UserRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
@@ -21,43 +23,45 @@ import static com.kalidratorma.yss.utils.ControllerUtils.getFilteredMapper;
 @RestController
 @CrossOrigin(originPatterns = "*")
 @RequiredArgsConstructor
+@RequestMapping("/player")
 public class PlayerController {
 
     private final PlayerRepository playerRepository;
 
     private final UserRepository userRepository;
 
-    @GetMapping("/player")
+    @GetMapping
     public MappingJacksonValue readPlayers() {
         List<Player> playerList = playerRepository.findAll();
         return getFilteredMapper(playerList, new CustomFilter("PlayerFilter",
-                SimpleBeanPropertyFilter.serializeAllExcept("contract")));
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
-    @PostMapping("/player")
+    @PostMapping
     public ResponseEntity<String> createPlayer(@RequestBody Player player) {
         playerRepository.save(player);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    @GetMapping("/player/{playerName}")
-//    public Player readPlayer(@PathVariable String playerName) {
-//        return playerRepository.findByName(playerName).orElseThrow(
-//                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
-//        );
-//    }
-
-    @GetMapping("/player/{id}")
+    @GetMapping("/{id}")
     public MappingJacksonValue readPlayer(@PathVariable long id) {
         Player player = playerRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
 
         return getFilteredMapper(player, new CustomFilter("PlayerFilter",
-                SimpleBeanPropertyFilter.serializeAllExcept("contract")));
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
-    @PutMapping("/player")
+    @GetMapping("/byParent/{id}")
+    public MappingJacksonValue readPlayersByParentId(@PathVariable long id) {
+        List<Player> players = playerRepository.findPlayersByParentId(id);
+
+        return getFilteredMapper(players, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
+    }
+
+    @PutMapping
     public ResponseEntity<String> updatePlayer(@RequestBody Player player) {
         Player origPlayer = playerRepository.findByName(player.getName()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
@@ -76,14 +80,14 @@ public class PlayerController {
         return response;
     }
 
-    @DeleteMapping("/player/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePlayer(@PathVariable long id) {
         Player origPlayer = playerRepository.findById(id).orElseThrow();
         playerRepository.deleteById(origPlayer.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/playerAsFile/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GetMapping(value = "/asFile/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public @ResponseBody ResponseEntity<MappingJacksonValue> getPlayerAsFile(@PathVariable long id) {
         Player player = playerRepository.findById(id).orElseThrow();
         HttpHeaders responseHeaders = new HttpHeaders();
