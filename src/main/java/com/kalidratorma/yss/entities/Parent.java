@@ -60,4 +60,10 @@ public class Parent {
      */
     @OneToOne
     private User user;
+
+    /**
+     * Договор
+     */
+    @ManyToMany
+    private List<Contract> contracts;
 }

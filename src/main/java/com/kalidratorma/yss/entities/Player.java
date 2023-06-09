@@ -53,7 +53,7 @@ public class Player {
     /**
      * Родители
      */
-    @OneToMany
+    @ManyToMany
     private List<Parent> parents;
 
     /**

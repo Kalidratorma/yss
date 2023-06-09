@@ -33,11 +33,18 @@ insert into contract (id, contract_number, contract_subject, contract_type, cont
                       payment_terms)
 values (3, 'Тестовый Договор Тренера №1', 'Текст договора тренера', 'COACH', null, '2026-01-01', '50 на 50');
 
+insert into contract (id, contract_number, contract_subject, contract_type, contractor_contract_number, exp_date,
+                      payment_terms)
+values (4, 'Тестовый Договор Клиента №3', 'Текст договора клиента', 'CLIENT', null, '2024-01-01', 'Net 15');
+
 insert into public.position (id, name, short_name)
 values (1, 'Нападающий', 'Нападающий');
 
 insert into public.position (id, name, short_name)
 values (2, 'Защитник', 'Защитник');
+
+insert into public.position (id, name, short_name)
+values (3, 'Вратарь', 'Вратарь');
 
 insert into player
 (id,surname,name, patronymic, birth_date,  number,  photo, sex,  team_year, contract_id, position_id)
@@ -88,6 +95,26 @@ values (3, 'Петров', 'Петр', 'Алексеевич', 'MALE', '+7 (999)
 insert into player_parents (player_id, parents_id)
 values (2,3);
 
+insert into player
+(id,surname,name, patronymic, birth_date,  number,  photo, sex,  team_year, contract_id, position_id)
+values (3, 'Иванов', 'Андрей', 'Иванович','2015-03-02', 1
+       , 'http://cdn1.imgbb.ru/user/23/233593/201411/b0f39d34be8a26e81e9344e0c0d3ef5d.jpg', 'MALE', 2015, 4, 3);
+
+insert into physiology (id, "date", grip, height, weight)
+values (3, '2023-06-04', 'RIGHT', 1350, 40000);
+
+insert into player_physiology_list (player_id, physiology_list_id)
+values (3,3);
+
+insert into stat (id, "date", goal, assist, penalty, points)
+values (3, '2023-06-04', 1, 2, 0, 322);
+
+insert into player_stats (player_id, stats_id)
+values (3,3);
+
+insert into player_parents (player_id, parents_id)
+values (3,1), (3,2);
+
 insert into coach (id, coach_type, surname, name, patronymic, sex, education, phone_number,  contract_id, user_id)
 values (1, 'Главный тренер', 'Смирнов', 'Андрей', 'Сергеевич', 'MALE', 'Российский университет спорта «ГЦОЛИФК»'
        , '+7 (999) 999-99-96', 3, 5);
@@ -137,3 +164,6 @@ values ('2023-06-23');
 
 insert into task_schedule (task_id, schedule_date)
 values (1, '2023-06-19'), (1, '2023-06-21'), (1, '2023-06-23');
+
+insert into parent_contracts (parent_id, contracts_id)
+values (1,1), (2,1), (1,4) , (2,4), (3, 2);
