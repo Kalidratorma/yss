@@ -1,6 +1,7 @@
 package com.kalidratorma.yss.controllers;
 
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.kalidratorma.yss.entities.Coach;
 import com.kalidratorma.yss.entities.Parent;
 import com.kalidratorma.yss.repositories.ParentRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
@@ -57,6 +58,13 @@ public class ParentController {
         Parent origParent = parentRepository.findById(id).orElseThrow();
         parentRepository.deleteById(origParent.getId());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/byUser/{userId}")
+    public Parent readCoachByUserId(@PathVariable long userId) {
+        return parentRepository.findParentByUserId(userId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
     }
 
 }

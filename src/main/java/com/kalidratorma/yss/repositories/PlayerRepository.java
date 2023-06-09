@@ -1,7 +1,6 @@
 package com.kalidratorma.yss.repositories;
 
 import com.kalidratorma.yss.entities.Player;
-import com.kalidratorma.yss.entities.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

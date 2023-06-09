@@ -43,6 +43,13 @@ public class CoachController {
         );
     }
 
+    @GetMapping("/byUser/{userId}")
+    public Coach readCoachByUserId(@PathVariable long userId) {
+        return coachRepository.findCoachByUserId(userId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+    }
+
     @PutMapping
     public ResponseEntity<String> updateCoach(@RequestBody Coach coach) {
         Coach origCoach = coachRepository.findById(coach.getId()).orElseThrow(
