@@ -61,7 +61,7 @@ public class TaskController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/player/{playerId}")
+    @GetMapping("/byPlayer/{playerId}")
     public MappingJacksonValue readPlayerTask(@PathVariable long playerId) {
         List<Task> taskList = taskRepository.findAllByPlayerId(playerId);
         return getFilteredMapper(taskList, new CustomFilter("TaskFilter",
