@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface TaskRepository extends JpaRepository<Task, Long> {
     Optional<Task> findByName(String name);
 
-    @Query("from Task r inner join fetch r.players where r.id = :id")
+    @Query("from Task r inner join fetch r.players t where t.id = :id")
     List<Task> findAllByPlayerId(@Param("id") long id);
 }
