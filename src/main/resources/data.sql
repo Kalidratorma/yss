@@ -136,16 +136,16 @@ insert into task_players (task_id, players_id)
 values (1,1), (1,2);
 
 insert into link (id, url)
-values (1, 'https://youtu.be/4yGyX4nxRUk');
+values (1, '4yGyX4nxRUk');
 
 insert into link (id, url)
 values (2, 'http://www.offsport.ru/hockey/images/28.png');
 
 insert into link (id, url)
-values (3, '');
+values (3, '52_0bDP4vGk');
 
 insert into link (id, url)
-values (4, '');
+values (4, 'http://www.offsport.ru/hockey/images/36.png');
 
 insert into task_video_links (task_id, video_links_id)
 values (1, 1), (1, 3);
@@ -167,3 +167,14 @@ values (1, '2023-06-19'), (1, '2023-06-21'), (1, '2023-06-23');
 
 insert into parent_contracts (parent_id, contracts_id)
 values (1,1), (2,1), (1,4) , (2,4), (3, 2);
+
+insert into task_report (id, report, report_date, task_date, player_id, task_id)
+values (1,
+        'Дорогой дневник, мне не подобрать слов чтобы описать ту боль и унижение которые я испытал сегодня, моя жизнь поломана навсегда. Я не нашел в шкафу Нарнию! Но зато выполнил задание тренера!',
+        '2023-06-19', '2023-06-19', 1, 1);
+
+insert into link (id, url)
+values (5, 'j28I9kGaDyU');
+
+insert into link (id, url)
+values (6, 'https://drive.google.com/file/d/1Nxpv-ottbZhghytY9LUNLsubD2sp0uo-/preview');
