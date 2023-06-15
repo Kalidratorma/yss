@@ -23,21 +23,25 @@ class ContentFileController {
     }
 
     @PostMapping
-    String uploadImage(@RequestParam MultipartFile file) throws Exception {
+    String uploadFile(@RequestParam MultipartFile... file) throws Exception {
         long maxSize;
-        if (file.getContentType() == null) {
-            throw new Exception("Unknown file format");
-        } else if  (file.getContentType().compareToIgnoreCase("video") >= 0) {
-            maxSize = 1024L * 1024L * 100L; // 100 Mb
-        } else if (file.getContentType().compareToIgnoreCase("image") >= 0) {
-            maxSize = 1024L * 1024L; // 1 Mb
-        } else {
-            throw new Exception("Unknown file format");
+        StringBuilder sb = new StringBuilder();
+        for (MultipartFile lFile : file) {
+            if (lFile.getContentType() == null) {
+                throw new Exception("Unknown file format");
+            } else if (lFile.getContentType().compareToIgnoreCase("video") >= 0) {
+                maxSize = 100L * 1024L * 1024L; // 100 Mb
+            } else if (lFile.getContentType().compareToIgnoreCase("image") >= 0) {
+                maxSize = 10L * 1024L * 1024L; // 10 Mb
+            } else {
+                throw new Exception("Unknown file format");
+            }
+            if (lFile.getSize() > maxSize) {
+                throw new Exception("File size is too large");
+            }
+            sb.append("\n\r").append(fileLocationService.save(lFile.getBytes(), lFile.getOriginalFilename()));
         }
-        if (file.getSize() > maxSize) {
-            throw new Exception("File size is too large");
-        }
-        return fileLocationService.save(file.getBytes(), file.getOriginalFilename());
+        return sb.delete(0,1).toString();
     }
 
     @GetMapping(value = "/{fileName}.{ext}")
