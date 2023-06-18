@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("file")
@@ -23,9 +25,9 @@ class ContentFileController {
     }
 
     @PostMapping
-    String uploadFile(@RequestParam MultipartFile... file) throws Exception {
+    Map<String, String> uploadFile(@RequestParam MultipartFile... file) throws Exception {
         long maxSize;
-        StringBuilder sb = new StringBuilder();
+        HashMap<String, String> hashMap = new HashMap<>();
         for (MultipartFile lFile : file) {
             if (lFile.getContentType() == null) {
                 throw new Exception("Unknown file format");
@@ -39,9 +41,9 @@ class ContentFileController {
             if (lFile.getSize() > maxSize) {
                 throw new Exception("File size is too large");
             }
-            sb.append("\n\r").append(fileLocationService.save(lFile.getBytes(), lFile.getOriginalFilename()));
+            hashMap.put(lFile.getOriginalFilename(), fileLocationService.save(lFile.getBytes(), lFile.getOriginalFilename()));
         }
-        return sb.delete(0,1).toString();
+        return hashMap;
     }
 
     @GetMapping(value = "/{fileName}.{ext}")
