@@ -8,9 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("file")
@@ -25,9 +24,9 @@ class ContentFileController {
     }
 
     @PostMapping
-    Map<String, String> uploadFile(@RequestParam MultipartFile... file) throws Exception {
+    List<ContentFile> uploadFile(@RequestParam MultipartFile... file) throws Exception {
         long maxSize;
-        HashMap<String, String> hashMap = new HashMap<>();
+        List<ContentFile> contentFiles = new ArrayList<>();
         for (MultipartFile lFile : file) {
             if (lFile.getContentType() == null) {
                 throw new Exception("Unknown file format");
@@ -41,9 +40,9 @@ class ContentFileController {
             if (lFile.getSize() > maxSize) {
                 throw new Exception("File size is too large");
             }
-            hashMap.put(lFile.getOriginalFilename(), fileLocationService.save(lFile.getBytes(), lFile.getOriginalFilename()));
+            contentFiles.add(fileLocationService.save(lFile.getBytes(), lFile.getOriginalFilename()));
         }
-        return hashMap;
+        return contentFiles;
     }
 
     @GetMapping(value = "/{fileName}.{ext}")
@@ -64,9 +63,9 @@ class ContentFileController {
         return new ResponseEntity<>(fileResource, responseHeaders, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{fileName}")
-    public HttpStatus deleteFile(@PathVariable String fileName) {
-        fileLocationService.deleteFileBySiteName(fileName);
+    @DeleteMapping("/{id}")
+    public HttpStatus deleteFile(@PathVariable Long id) {
+        fileLocationService.deleteFileById(id);
         return HttpStatus.OK;
     }
 }

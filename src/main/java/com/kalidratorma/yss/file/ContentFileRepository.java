@@ -12,5 +12,5 @@ interface ContentFileRepository extends JpaRepository<ContentFile, Long> {
     Optional<ContentFile> findTopByNameOrderByIdDesc(String name);
     List<ContentFile> findAll ();
 
-    void deleteByName(String name);
+    void deleteById(Long id);
 }

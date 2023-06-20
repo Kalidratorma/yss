@@ -21,13 +21,11 @@ class FileLocationService {
         return contentFileRepository.findAll();
     }
 
-    String save(byte[] bytes, String imageName) throws Exception {
-        String date = Long.toString(new Date().getTime()/1000);
-        String imageNameWithDate = date + "-" + imageName;
+    ContentFile save(byte[] bytes, String imageName) throws Exception {
+        String uuid = java.util.UUID.randomUUID().toString();
+        String imageNameWithDate = uuid + "-" + imageName;
         String location = fileSystemRepository.save(bytes, imageNameWithDate);
-        contentFileRepository.save(new ContentFile(imageNameWithDate, location));
-
-        return "/file/" + imageNameWithDate;
+        return contentFileRepository.save(new ContentFile(imageNameWithDate, location));
     }
 
     FileSystemResource find(String fileName) {
@@ -38,9 +36,9 @@ class FileLocationService {
         return fileSystemRepository.findInFileSystem(contentFile.getLocation());
     }
 
-    void deleteFileBySiteName(String fileName) {
+    void deleteFileById(Long id) {
 
         contentFileRepository
-                .deleteByName(fileName);
+                .deleteById(id);
     }
 }
