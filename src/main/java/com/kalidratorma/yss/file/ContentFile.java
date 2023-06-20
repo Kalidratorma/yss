@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "content_file")
-class ContentFile {
+public class ContentFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

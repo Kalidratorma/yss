@@ -1,5 +1,6 @@
 package com.kalidratorma.yss.entities;
 
+import com.kalidratorma.yss.file.ContentFile;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,8 +47,8 @@ public class TaskReport {
     private String report;
 
     @OneToMany
-    private List<Link> photoLinks;
+    private List<ContentFile> photoLinks;
 
     @OneToMany
-    private List<Link> videoLinks;
+    private List<ContentFile> videoLinks;
 }

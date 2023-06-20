@@ -1,6 +1,7 @@
 package com.kalidratorma.yss.entities;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import com.kalidratorma.yss.file.ContentFile;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -60,13 +61,13 @@ public class Task {
      * Ссылки на видео
      */
     @OneToMany
-    private List<Link> videoLinks;
+    private List<ContentFile> videoLinks;
 
     /**
      * Ссылки на фото
      */
     @OneToMany
-    private List<Link> photoLinks;
+    private List<ContentFile> photoLinks;
 
     /**
      * Расписание

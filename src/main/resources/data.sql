@@ -1,5 +1,5 @@
--- drop database yss with (FORCE);
--- create database yss;
+--  drop database yss with (FORCE);
+--  create database yss;
 
 insert into public.sec_user (id, email, enabled, password, role, username)
 values (1, 'example@example.org', true
@@ -135,18 +135,6 @@ values (1, 1, 'Ведение шайбы между стойками', 1, 15, '�
 insert into task_players (task_id, players_id)
 values (1,1), (1,2);
 
-insert into link (id, url)
-values (1, '4yGyX4nxRUk');
-
-insert into link (id, url)
-values (2, 'http://www.offsport.ru/hockey/images/28.png');
-
-insert into link (id, url)
-values (3, '52_0bDP4vGk');
-
-insert into link (id, url)
-values (4, 'http://www.offsport.ru/hockey/images/36.png');
-
 insert into task_video_links (task_id, video_links_id)
 values (1, 1), (1, 3);
 
@@ -172,9 +160,3 @@ insert into task_report (id, report, report_date, task_date, player_id, task_id)
 values (1,
         'Дорогой дневник, мне не подобрать слов чтобы описать ту боль и унижение которые я испытал сегодня, моя жизнь поломана навсегда. Я не нашел в шкафу Нарнию! Но зато выполнил задание тренера!',
         '2023-06-19', '2023-06-19', 1, 1);
-
-insert into link (id, url)
-values (5, 'j28I9kGaDyU');
-
-insert into link (id, url)
-values (6, 'https://drive.google.com/file/d/1Nxpv-ottbZhghytY9LUNLsubD2sp0uo-/preview');
