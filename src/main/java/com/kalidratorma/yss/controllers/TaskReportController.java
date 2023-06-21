@@ -42,8 +42,8 @@ public class TaskReportController {
 
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createTaskReport(@RequestBody TaskReportRequest taskReportRequest) {
+    @PostMapping
+    TaskReport createTaskReport(@RequestBody TaskReportRequest taskReportRequest) {
         Task task = taskRepository.findById(taskReportRequest.getTaskId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
@@ -59,8 +59,7 @@ public class TaskReportController {
         taskReport.setPhotoLinks(taskReportRequest.getPhotoLinks());
         taskReport.setVideoLinks(taskReportRequest.getVideoLinks());
 
-        taskReportRepository.save(taskReport);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return taskReportRepository.save(taskReport);
     }
 
     @GetMapping("/{id}")
