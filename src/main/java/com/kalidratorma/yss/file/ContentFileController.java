@@ -49,7 +49,7 @@ class ContentFileController {
 
             StringBuilder extensionSb = new StringBuilder(lFile.getOriginalFilename());
             if (extensionSb.lastIndexOf(".") > 0) {
-                extension = extensionSb.substring(extensionSb.lastIndexOf("."));
+                extension = extensionSb.substring(extensionSb.lastIndexOf(".") + 1);
             }
 
             contentFiles.add(fileLocationService.save(lFile.getBytes(), extension));
