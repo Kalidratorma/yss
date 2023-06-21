@@ -1,8 +1,13 @@
 package com.kalidratorma.yss.controllers;
 
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.kalidratorma.yss.entities.Player;
+import com.kalidratorma.yss.entities.Task;
 import com.kalidratorma.yss.entities.TaskReport;
+import com.kalidratorma.yss.entities.requests.TaskReportRequest;
+import com.kalidratorma.yss.repositories.PlayerRepository;
 import com.kalidratorma.yss.repositories.TaskReportRepository;
+import com.kalidratorma.yss.repositories.TaskRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +27,10 @@ import static com.kalidratorma.yss.utils.ControllerUtils.getFilteredMapper;
 public class TaskReportController {
 
     private final TaskReportRepository taskReportRepository;
+    private final TaskRepository taskRepository;
+    private final PlayerRepository playerRepository;
+
+
 
     @GetMapping
     public MappingJacksonValue readTaskReports() {
@@ -33,7 +42,22 @@ public class TaskReportController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createTaskReport(@RequestBody TaskReport taskReport) {
+    public ResponseEntity<String> createTaskReport(@RequestBody TaskReportRequest taskReportRequest) {
+        Task task = taskRepository.findById(taskReportRequest.getTaskId()).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+        Player player = playerRepository.findById(taskReportRequest.getPlayerId()).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+        TaskReport taskReport = new TaskReport();
+        taskReport.setTask(task);
+        taskReport.setPlayer(player);
+        taskReport.setReport(taskReportRequest.getReport());
+        taskReport.setReportDate(taskReportRequest.getReportDate());
+        taskReport.setTaskDate(taskReportRequest.getTaskDate());
+        taskReport.setPhotoLinks(taskReportRequest.getPhotoLinks());
+        taskReport.setVideoLinks(taskReportRequest.getVideoLinks());
+
         taskReportRepository.save(taskReport);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
