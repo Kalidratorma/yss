@@ -11,6 +11,7 @@ import com.kalidratorma.yss.repositories.TaskRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class TaskReportController {
 
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createTaskReport(@RequestBody TaskReportRequest taskReportRequest) {
         Task task = taskRepository.findById(taskReportRequest.getTaskId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
