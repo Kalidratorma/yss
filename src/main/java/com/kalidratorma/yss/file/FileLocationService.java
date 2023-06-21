@@ -21,9 +21,9 @@ class FileLocationService {
         return contentFileRepository.findAll();
     }
 
-    ContentFile save(byte[] bytes, String imageName) throws Exception {
+    ContentFile save(byte[] bytes, String extension) throws Exception {
         String uuid = java.util.UUID.randomUUID().toString();
-        String imageNameWithDate = uuid + "-" + imageName;
+        String imageNameWithDate = uuid + "." + extension;
         String location = fileSystemRepository.save(bytes, imageNameWithDate);
         return contentFileRepository.save(new ContentFile(imageNameWithDate, location));
     }

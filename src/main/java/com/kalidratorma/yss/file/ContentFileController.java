@@ -26,21 +26,33 @@ class ContentFileController {
     @PostMapping
     List<ContentFile> uploadFile(@RequestParam MultipartFile... file) throws Exception {
         long maxSize;
+        String extension;
         List<ContentFile> contentFiles = new ArrayList<>();
         for (MultipartFile lFile : file) {
             if (lFile.getContentType() == null) {
                 throw new Exception("Unknown file format");
             } else if (lFile.getContentType().compareToIgnoreCase("video") >= 0) {
                 maxSize = 100L * 1024L * 1024L; // 100 Mb
+                extension = "video";
             } else if (lFile.getContentType().compareToIgnoreCase("image") >= 0) {
                 maxSize = 10L * 1024L * 1024L; // 10 Mb
+                extension = "image";
             } else {
                 throw new Exception("Unknown file format");
             }
             if (lFile.getSize() > maxSize) {
                 throw new Exception("File size is too large");
             }
-            contentFiles.add(fileLocationService.save(lFile.getBytes(), lFile.getOriginalFilename()));
+            if (lFile.getOriginalFilename() == null) {
+                throw new Exception("File without name");
+            }
+
+            StringBuilder extensionSb = new StringBuilder(lFile.getOriginalFilename());
+            if (extensionSb.lastIndexOf(".") > 0) {
+                extension = extensionSb.substring(extensionSb.lastIndexOf("."));
+            }
+
+            contentFiles.add(fileLocationService.save(lFile.getBytes(), extension));
         }
         return contentFiles;
     }

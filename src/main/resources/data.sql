@@ -135,12 +135,6 @@ values (1, 1, 'Ведение шайбы между стойками', 1, 15, '�
 insert into task_players (task_id, players_id)
 values (1,1), (1,2);
 
-insert into task_video_links (task_id, video_links_id)
-values (1, 1), (1, 3);
-
-insert into task_photo_links (task_id, photo_links_id)
-values (1, 2), (1, 4);
-
 insert into just_date ("date")
 values ('2023-06-19');
 
