@@ -43,7 +43,7 @@ public class TaskReportController {
     }
 
     @PostMapping
-    TaskReport createTaskReport(@RequestBody TaskReportRequest taskReportRequest) {
+    public ResponseEntity<String> createTaskReport(@RequestBody TaskReportRequest taskReportRequest) {
         Task task = taskRepository.findById(taskReportRequest.getTaskId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
@@ -58,8 +58,9 @@ public class TaskReportController {
         taskReport.setTaskDate(taskReportRequest.getTaskDate());
         taskReport.setPhotoLinks(taskReportRequest.getPhotoLinks());
         taskReport.setVideoLinks(taskReportRequest.getVideoLinks());
+        taskReportRepository.save(taskReport);
 
-        return taskReportRepository.save(taskReport);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
