@@ -7,13 +7,17 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * Формат игры
+ */
 @Entity
 @Data
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "game_format")
+@Table(name = "game_format",
+        indexes = {@Index(name = "IDX_GAME_FORMAT_NAME", columnList = "name")})
 public class GameFormat {
 
     @Id
@@ -29,7 +33,13 @@ public class GameFormat {
     /**
      * Название формата
      */
+    @Column(unique = true)
     private String name;
+
+    /**
+     * Коммерческая/некоммерческая игра
+     */
+    private Boolean isCommercial;
 
     /**
      * Тип льда
