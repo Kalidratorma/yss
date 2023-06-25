@@ -51,6 +51,11 @@ public class Player {
     private Date birthDate;
 
     /**
+     * Ограничения
+     */
+    private String restrictions;
+
+    /**
      * Родители
      */
     @ManyToMany
