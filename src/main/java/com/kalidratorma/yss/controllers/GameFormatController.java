@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin(originPatterns = "*")
 @RequiredArgsConstructor
 @RequestMapping("/gameFormat")
-public class FormatController {
+public class GameFormatController {
 
     private final GameFormatRepository gameFormatRepository;
 
