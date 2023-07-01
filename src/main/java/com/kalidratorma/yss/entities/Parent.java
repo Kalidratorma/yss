@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -43,6 +44,11 @@ public class Parent {
      * Отчество
      */
     private String patronymic;
+
+    /**
+     * Дата рождения
+     */
+    private Date birthDate;
 
     /**
      * Телефон
