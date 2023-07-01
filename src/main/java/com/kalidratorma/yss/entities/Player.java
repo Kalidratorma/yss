@@ -90,10 +90,10 @@ public class Player {
     private Position position;
 
     /**
-     * Договор
+     * Договора
      */
-    @OneToOne
-    private Contract contract;
+    @OneToMany
+    private List<Contract> contracts;
 
     /**
      * Физиология

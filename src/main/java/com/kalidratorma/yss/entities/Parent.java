@@ -68,7 +68,7 @@ public class Parent {
     private User user;
 
     /**
-     * Договор
+     * Договора
      */
     @ManyToMany
     private List<Contract> contracts;
