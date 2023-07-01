@@ -98,12 +98,12 @@ public class Player {
     /**
      * Физиология
      */
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Physiology> physiologyList;
 
     /**
      * Статистика
      */
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Stat> stats;
 }
