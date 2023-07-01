@@ -31,7 +31,7 @@ public class Physiology {
     /**
      * Дата
      */
-    @Column(name = "date", nullable = false, updatable = false)
+    @Column(name = "date", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date date;
