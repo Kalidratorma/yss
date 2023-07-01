@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(originPatterns = "*")
 @RequiredArgsConstructor
-@RequestMapping("/Position")
+@RequestMapping("/position")
 public class PositionController {
 
     private final PositionRepository PositionRepository;
