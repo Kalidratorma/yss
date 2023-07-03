@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +31,8 @@ public class TaskReport {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "report_date", nullable = false)
+    @Column(name = "report_date", updatable = false)
+    @CreatedDate
     private Date reportDate;
 
     @ManyToOne
@@ -41,7 +44,8 @@ public class TaskReport {
     private Player player;
 
     @Column(name = "task_date")
-    private Date taskDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate taskDate;
 
     @Column(name = "report")
     private String report;

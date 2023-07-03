@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -31,7 +32,8 @@ public class Stat {
     /**
      * Дата
      */
-    private Date date;
+    @Temporal(TemporalType.DATE)
+    private LocalDate date;
 
     /**
      * Гол

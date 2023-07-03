@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -54,7 +55,8 @@ public class Contract {
     /**
      * Срок действия договора
      */
-    private Date expDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate expDate;
 
     /**
      * Условия оплаты

@@ -2,6 +2,7 @@ package com.kalidratorma.yss.entities.requests;
 
 import com.kalidratorma.yss.file.ContentFile;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class TaskReportRequest {
     private Date reportDate;
     private Long taskId;
     private Long playerId;
-    private Date taskDate;
+    private LocalDate taskDate;
     private String report;
     private List<ContentFile> photoLinks;
     private List<ContentFile> videoLinks;
@@ -17,7 +18,7 @@ public class TaskReportRequest {
     public TaskReportRequest() {
     }
 
-    public TaskReportRequest(Date reportDate, Long taskId, Long playerId, Date taskDate, String report, List<ContentFile> photoLinks, List<ContentFile> videoLinks) {
+    public TaskReportRequest(Date reportDate, Long taskId, Long playerId, LocalDate taskDate, String report, List<ContentFile> photoLinks, List<ContentFile> videoLinks) {
         this.reportDate = reportDate;
         this.taskId = taskId;
         this.playerId = playerId;
@@ -51,11 +52,11 @@ public class TaskReportRequest {
         this.playerId = playerId;
     }
 
-    public Date getTaskDate() {
+    public LocalDate getTaskDate() {
         return taskDate;
     }
 
-    public void setTaskDate(Date taskDate) {
+    public void setTaskDate(LocalDate taskDate) {
         this.taskDate = taskDate;
     }
 
