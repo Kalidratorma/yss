@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +49,8 @@ public class Parent {
     /**
      * Дата рождения
      */
-    private Date birthDate;
+    @Temporal(TemporalType.DATE)
+    private LocalDate birthDate;
 
     /**
      * Телефон
