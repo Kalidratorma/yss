@@ -39,7 +39,7 @@ public class TeamYearController {
 
     @PutMapping
     public ResponseEntity<String> updateTeamYear(@RequestBody TeamYear TeamYear) {
-        TeamYear origTeamYear = teamYearRepository.findById(TeamYear.getId()).orElseThrow(
+        teamYearRepository.findById(TeamYear.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         teamYearRepository.save(TeamYear);

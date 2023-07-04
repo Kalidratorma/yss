@@ -21,6 +21,10 @@ import java.util.Date;
 @ToString(callSuper = true)
 @Table(name = "physiology")
 public class Physiology {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "physiology_seq")
     @SequenceGenerator(
@@ -40,12 +44,12 @@ public class Physiology {
     private Date date;
 
     /**
-     * Рост (в миллиметрах)
+     * Рост
      */
     private int height;
 
     /**
-     * Вес (в граммах)
+     * Вес
      */
     private int weight;
 

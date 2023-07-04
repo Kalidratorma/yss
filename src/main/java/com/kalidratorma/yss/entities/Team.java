@@ -21,6 +21,9 @@ import java.util.List;
 @Table(name = "team")
 public class Team {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_seq")
     @SequenceGenerator(

@@ -21,6 +21,10 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 @Table(name = "stat")
 public class Stat {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stat_seq")
     @SequenceGenerator(
@@ -38,12 +42,12 @@ public class Stat {
     private LocalDate date;
 
     /**
-     * Гол
+     * Голы
      */
     private int goal;
 
     /**
-     * Пас
+     * Пасы
      */
     private int assist;
 
@@ -53,7 +57,7 @@ public class Stat {
     private int points;
 
     /**
-     * Штраф
+     * Штрафы
      */
     private int penalty;
 }

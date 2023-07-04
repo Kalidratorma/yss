@@ -1,6 +1,5 @@
 package com.kalidratorma.yss.controllers;
 
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.kalidratorma.yss.entities.Contract;
 import com.kalidratorma.yss.repositories.ContractRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-
-import static com.kalidratorma.yss.utils.ControllerUtils.getFilteredMapper;
 
 @RestController
 @CrossOrigin(originPatterns = "*")
@@ -55,7 +52,7 @@ public class ContractController {
 
     @PutMapping
     public ResponseEntity<String> updateContract(@RequestBody Contract contract) {
-        Contract origContract = contractRepository.findById(contract.getId()).orElseThrow(
+        contractRepository.findById(contract.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         contractRepository.save(contract);

@@ -39,7 +39,7 @@ public class GameFormatController {
 
     @PutMapping
     public ResponseEntity<String> updateGameFormat(@RequestBody GameFormat gameFormat) {
-        GameFormat origGameFormat = gameFormatRepository.findById(gameFormat.getId()).orElseThrow(
+        gameFormatRepository.findById(gameFormat.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         gameFormatRepository.save(gameFormat);

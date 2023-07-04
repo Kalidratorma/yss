@@ -17,6 +17,9 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "position")
 public class Position {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "position_seq")
     @SequenceGenerator(

@@ -20,6 +20,10 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 @Table(name = "contract")
 public class Contract {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_seq")
     @SequenceGenerator(

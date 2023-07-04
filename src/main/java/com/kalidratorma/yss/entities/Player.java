@@ -10,6 +10,9 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Спортсмен
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -20,6 +23,9 @@ import java.util.List;
 @JsonFilter("PlayerFilter")
 public class Player {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_seq")
     @SequenceGenerator(

@@ -20,6 +20,9 @@ import lombok.experimental.SuperBuilder;
         indexes = {@Index(name = "IDX_GAME_FORMAT_NAME", columnList = "name")})
 public class GameFormat {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "game_format_seq")
     @SequenceGenerator(

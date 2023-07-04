@@ -52,7 +52,7 @@ public class CoachController {
 
     @PutMapping
     public ResponseEntity<String> updateCoach(@RequestBody Coach coach) {
-        Coach origCoach = coachRepository.findById(coach.getId()).orElseThrow(
+        coachRepository.findById(coach.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         coachRepository.save(coach);

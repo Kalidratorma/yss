@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDate;
 
 /**
- * Просто дата
+ * Просто дата (техническая сущность для календаря)
  */
 @Entity
 @Data

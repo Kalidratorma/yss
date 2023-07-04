@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Пользователь
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -22,21 +25,39 @@ import java.util.List;
 @Table(name = "sec_user")
 public class User implements UserDetails {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
+    /**
+     * Имя пользователя
+     */
     @Column(unique = true)
     private String username;
 
+    /**
+     * Почта
+     */
     @Column(unique = true)
     private String email;
 
+    /**
+     * Пароль
+     */
     @JsonProperty(access=JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    /**
+     * Признак активности учётной записи
+     */
     private boolean enabled;
 
+    /**
+     * Роль
+     */
     @Enumerated(EnumType.STRING)
     private Role role;
 

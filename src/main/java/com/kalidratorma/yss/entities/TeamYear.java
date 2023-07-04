@@ -19,6 +19,10 @@ import lombok.experimental.SuperBuilder;
 @ToString(callSuper = true)
 @Table(name = "team_year")
 public class TeamYear {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_year_seq")
     @SequenceGenerator(

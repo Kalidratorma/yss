@@ -23,6 +23,10 @@ import java.util.List;
 @Table(name = "task")
 @JsonFilter("TaskFilter")
 public class Task {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
     @SequenceGenerator(

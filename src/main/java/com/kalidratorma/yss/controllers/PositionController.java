@@ -39,7 +39,7 @@ public class PositionController {
 
     @PutMapping
     public ResponseEntity<String> updatePosition(@RequestBody Position Position) {
-        Position origPosition = PositionRepository.findById(Position.getId()).orElseThrow(
+        PositionRepository.findById(Position.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         PositionRepository.save(Position);

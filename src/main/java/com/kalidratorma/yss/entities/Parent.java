@@ -23,6 +23,9 @@ import java.util.List;
 @Table(name = "parent")
 public class Parent {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "parent_seq")
     @SequenceGenerator(

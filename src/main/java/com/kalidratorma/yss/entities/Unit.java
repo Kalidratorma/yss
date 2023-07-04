@@ -20,6 +20,10 @@ import java.util.List;
 @ToString(callSuper = true)
 @Table(name = "unit")
 public class Unit {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "unit_seq")
     @SequenceGenerator(

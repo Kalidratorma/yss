@@ -24,6 +24,10 @@ import java.util.List;
 @ToString(callSuper = true)
 @Table(name = "task_report")
 public class TaskReport {
+
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_report_seq")
     @SequenceGenerator(
@@ -34,28 +38,49 @@ public class TaskReport {
     @Column(name = "id", updatable = false)
     private Long id;
 
+    /**
+     * Дата отчета
+     */
     @Column(name = "report_date", updatable = false)
     @CreatedDate
     private Date reportDate;
 
+    /**
+     * Задание тренера
+     */
     @ManyToOne
     @JoinColumn(name = "task_id", nullable = false)
     private Task task;
 
+    /**
+     * Спортсмен
+     */
     @ManyToOne
     @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
+    /**
+     * Дата задания
+     */
     @Column(name = "task_date")
     @Temporal(TemporalType.DATE)
     private LocalDate taskDate;
 
+    /**
+     * Текст отчета
+     */
     @Column(name = "report")
     private String report;
 
+    /**
+     * Список ссылок с фотографиями
+     */
     @OneToMany
     private List<ContentFile> photoLinks;
 
+    /**
+     * Список видео ссылок
+     */
     @OneToMany
     private List<ContentFile> videoLinks;
 }

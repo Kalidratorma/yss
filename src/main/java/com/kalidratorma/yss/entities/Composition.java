@@ -21,6 +21,9 @@ import java.util.List;
 @Table(name = "composition")
 public class Composition {
 
+    /**
+     * Идентификатор
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "composition_seq")
     @SequenceGenerator(
