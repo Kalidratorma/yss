@@ -8,6 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
+
+/**
+ * Тренер
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -17,11 +22,11 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "coach")
 public class Coach {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="coach_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "coach_seq")
     @SequenceGenerator(
-            name="coach_seq",
-            sequenceName="coach_seq",
-            allocationSize=1
+            name = "coach_seq",
+            sequenceName = "coach_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;
@@ -42,15 +47,31 @@ public class Coach {
     private String patronymic;
 
     /**
+     * Пол
+     */
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
+    /**
+     * Дата рождения
+     */
+    @Temporal(TemporalType.DATE)
+    private LocalDate birthDate;
+
+    /**
+     * Почта
+     */
+    private String email;
+
+    /**
      * Телефон
      */
     private String phoneNumber;
 
     /**
-     * Пол
+     * Фото
      */
-    @Enumerated(EnumType.STRING)
-    private Sex sex;
+    private String photo;
 
     /**
      * Образование

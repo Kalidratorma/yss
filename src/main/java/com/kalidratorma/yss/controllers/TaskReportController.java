@@ -11,7 +11,6 @@ import com.kalidratorma.yss.repositories.TaskRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +31,11 @@ public class TaskReportController {
     private final PlayerRepository playerRepository;
 
 
-
     @GetMapping
     public MappingJacksonValue readTaskReports() {
         List<TaskReport> taskReportList = taskReportRepository.findAll();
         return getFilteredMapper(taskReportList, new CustomFilter("PlayerFilter",
-                SimpleBeanPropertyFilter.filterOutAllExcept("id", "surname", "name", "patronymic", "birthDate")),
+                        SimpleBeanPropertyFilter.filterOutAllExcept("id", "surname", "name", "patronymic", "birthDate")),
                 new CustomFilter("TaskFilter", SimpleBeanPropertyFilter.serializeAll()));
 
     }
@@ -72,7 +70,7 @@ public class TaskReportController {
 
     @PutMapping
     public ResponseEntity<String> updateTaskReport(@RequestBody TaskReport taskReport) {
-        TaskReport origTaskReport = taskReportRepository.findById(taskReport.getId()).orElseThrow(
+        taskReportRepository.findById(taskReport.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         taskReportRepository.save(taskReport);

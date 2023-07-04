@@ -8,7 +8,6 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Договор
@@ -22,11 +21,11 @@ import java.util.Date;
 @Table(name = "contract")
 public class Contract {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="contract_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_seq")
     @SequenceGenerator(
-            name="contract_seq",
-            sequenceName="contract_seq",
-            allocationSize=1
+            name = "contract_seq",
+            sequenceName = "contract_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

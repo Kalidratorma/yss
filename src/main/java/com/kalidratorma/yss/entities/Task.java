@@ -24,11 +24,11 @@ import java.util.List;
 @JsonFilter("TaskFilter")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="task_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_seq")
     @SequenceGenerator(
-            name="task_seq",
-            sequenceName="task_seq",
-            allocationSize=1
+            name = "task_seq",
+            sequenceName = "task_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

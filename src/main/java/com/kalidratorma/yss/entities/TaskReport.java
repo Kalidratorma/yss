@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Отчет по заданию тренера
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -22,11 +25,11 @@ import java.util.List;
 @Table(name = "task_report")
 public class TaskReport {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="task_report_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_report_seq")
     @SequenceGenerator(
-            name="task_report_seq",
-            sequenceName="task_report_seq",
-            allocationSize=1
+            name = "task_report_seq",
+            sequenceName = "task_report_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

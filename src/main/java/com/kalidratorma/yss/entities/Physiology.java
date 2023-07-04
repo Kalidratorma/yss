@@ -10,6 +10,9 @@ import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 
+/**
+ * Физические показатели на определенную дату
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -19,15 +22,15 @@ import java.util.Date;
 @Table(name = "physiology")
 public class Physiology {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="physiology_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "physiology_seq")
     @SequenceGenerator(
-            name="physiology_seq",
-            sequenceName="physiology_seq",
-            allocationSize=1
+            name = "physiology_seq",
+            sequenceName = "physiology_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;
-    
+
     /**
      * Дата
      */

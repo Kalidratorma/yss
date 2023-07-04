@@ -1,4 +1,5 @@
 package com.kalidratorma.yss.entities;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,15 +18,15 @@ import lombok.experimental.SuperBuilder;
 public class Position {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="position_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "position_seq")
     @SequenceGenerator(
-            name="position_seq",
-            sequenceName="position_seq",
-            allocationSize=1
+            name = "position_seq",
+            sequenceName = "position_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;
-    
+
     /**
      * Сокращенное название
      */

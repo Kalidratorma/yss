@@ -9,6 +9,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+/**
+ * Команда
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -19,11 +22,11 @@ import java.util.List;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="team_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_seq")
     @SequenceGenerator(
-            name="team_seq",
-            sequenceName="team_seq",
-            allocationSize=1
+            name = "team_seq",
+            sequenceName = "team_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

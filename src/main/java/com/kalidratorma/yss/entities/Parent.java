@@ -9,9 +9,11 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
+/**
+ * Родитель (клиент)
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -22,11 +24,11 @@ import java.util.List;
 public class Parent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="parent_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "parent_seq")
     @SequenceGenerator(
-            name="parent_seq",
-            sequenceName="parent_seq",
-            allocationSize=1
+            name = "parent_seq",
+            sequenceName = "parent_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;
@@ -47,10 +49,21 @@ public class Parent {
     private String patronymic;
 
     /**
+     * Пол
+     */
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
+    /**
      * Дата рождения
      */
     @Temporal(TemporalType.DATE)
     private LocalDate birthDate;
+
+    /**
+     * Почта
+     */
+    private String email;
 
     /**
      * Телефон
@@ -58,10 +71,9 @@ public class Parent {
     private String phoneNumber;
 
     /**
-     * Пол
+     * Фото
      */
-    @Enumerated(EnumType.STRING)
-    private Sex sex;
+    private String photo;
 
     /**
      * Пользователь

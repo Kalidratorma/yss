@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,11 +21,11 @@ import java.util.List;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="player_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_seq")
     @SequenceGenerator(
-            name="player_seq",
-            sequenceName="player_seq",
-            allocationSize=1
+            name = "player_seq",
+            sequenceName = "player_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;
@@ -47,10 +46,31 @@ public class Player {
     private String patronymic;
 
     /**
+     * Пол
+     */
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
+    /**
      * Дата рождения
      */
     @Temporal(TemporalType.DATE)
     private LocalDate birthDate;
+
+    /**
+     * Почта
+     */
+    private String email;
+
+    /**
+     * Телефон
+     */
+    private String phoneNumber;
+
+    /**
+     * Фото
+     */
+    private String photo;
 
     /**
      * Ограничения
@@ -64,13 +84,6 @@ public class Player {
     private List<Parent> parents;
 
     /**
-     * Пол
-     */
-    @Enumerated(EnumType.STRING)
-    private Sex sex;
-
-
-    /**
      * Игровой номер
      */
     private byte number;
@@ -79,11 +92,6 @@ public class Player {
      * Год команды
      */
     private short teamYear;
-
-    /**
-     * Фото
-     */
-    private String photo;
 
     /**
      * Амплуа/позиция

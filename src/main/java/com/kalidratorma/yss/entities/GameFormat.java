@@ -21,11 +21,11 @@ import lombok.experimental.SuperBuilder;
 public class GameFormat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="game_format_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "game_format_seq")
     @SequenceGenerator(
-            name="game_format_seq",
-            sequenceName="game_format_seq",
-            allocationSize=1
+            name = "game_format_seq",
+            sequenceName = "game_format_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

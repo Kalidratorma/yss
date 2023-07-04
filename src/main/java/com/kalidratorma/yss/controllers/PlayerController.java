@@ -3,7 +3,6 @@ package com.kalidratorma.yss.controllers;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.kalidratorma.yss.entities.Player;
 import com.kalidratorma.yss.repositories.PlayerRepository;
-import com.kalidratorma.yss.security.user.User;
 import com.kalidratorma.yss.security.user.UserRepository;
 import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
@@ -66,14 +65,14 @@ public class PlayerController {
         Player origPlayer = playerRepository.findByName(player.getName()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
-        User user = userRepository
+        userRepository
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow();
         ResponseEntity<String> response;
 //        if (user.getAuthorities().contains(new SimpleGrantedAuthority(Role.ADMIN.name()))
 //                || user.getPlayers().contains(origPlayer)) {
-            player.setId(origPlayer.getId());
-            playerRepository.save(player);
-            response = new ResponseEntity<>(HttpStatus.OK);
+        player.setId(origPlayer.getId());
+        playerRepository.save(player);
+        response = new ResponseEntity<>(HttpStatus.OK);
 //        } else {
 //            response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
 //        }
@@ -96,7 +95,7 @@ public class PlayerController {
         responseHeaders.add("content-type"
                 , "application/json");
         return new ResponseEntity<>(getFilteredMapper(player, new CustomFilter("PlayerFilter",
-                        SimpleBeanPropertyFilter.serializeAll()))
+                SimpleBeanPropertyFilter.serializeAll()))
                 , responseHeaders, HttpStatus.OK);
     }
 }

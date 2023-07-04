@@ -9,6 +9,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+/**
+ * Состав
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -19,11 +22,11 @@ import java.util.List;
 public class Composition {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="composition_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "composition_seq")
     @SequenceGenerator(
-            name="composition_seq",
-            sequenceName="composition_seq",
-            allocationSize=1
+            name = "composition_seq",
+            sequenceName = "composition_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

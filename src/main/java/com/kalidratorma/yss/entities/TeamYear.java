@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * Год команды
+ */
 @Entity
 @Data
 @SuperBuilder
@@ -17,11 +20,11 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "team_year")
 public class TeamYear {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="team_year_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_year_seq")
     @SequenceGenerator(
-            name="team_year_seq",
-            sequenceName="team_year_seq",
-            allocationSize=1
+            name = "team_year_seq",
+            sequenceName = "team_year_seq",
+            allocationSize = 1
     )
     @Column(name = "id", updatable = false)
     private Long id;

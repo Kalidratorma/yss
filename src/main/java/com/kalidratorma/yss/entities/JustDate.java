@@ -8,7 +8,6 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Просто дата
@@ -22,6 +21,9 @@ import java.util.Date;
 @Table(name = "just_date")
 public class JustDate {
 
+    /**
+     * Дата
+     */
     @Id
     @Temporal(TemporalType.DATE)
     private LocalDate date;

@@ -27,7 +27,7 @@ public class TaskController {
     public MappingJacksonValue readTasks() {
         List<Task> taskList = taskRepository.findAll();
         return getFilteredMapper(taskList, new CustomFilter("PlayerFilter",
-                SimpleBeanPropertyFilter.filterOutAllExcept("id", "surname", "name", "patronymic", "birthDate")),
+                        SimpleBeanPropertyFilter.filterOutAllExcept("id", "surname", "name", "patronymic", "birthDate")),
                 new CustomFilter("TaskFilter", SimpleBeanPropertyFilter.serializeAll()));
 
     }
@@ -47,7 +47,7 @@ public class TaskController {
 
     @PutMapping
     public ResponseEntity<String> updateTask(@RequestBody Task task) {
-        Task origTask = taskRepository.findById(task.getId()).orElseThrow(
+        taskRepository.findById(task.getId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
         taskRepository.save(task);
