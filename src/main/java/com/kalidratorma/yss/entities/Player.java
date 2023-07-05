@@ -97,7 +97,8 @@ public class Player {
     /**
      * Год команды
      */
-    private short teamYear;
+    @OneToOne
+    private TeamYear teamYear;
 
     /**
      * Амплуа/позиция
