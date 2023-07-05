@@ -43,11 +43,6 @@ public class ClubTeam {
     private String name;
 
     /**
-     * Сайт
-     */
-    private String siteUrl;
-
-    /**
      * Контакты
      */
     private String contacts;
