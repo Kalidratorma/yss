@@ -1,13 +1,11 @@
 package com.kalidratorma.yss.repositories;
 
-import com.kalidratorma.yss.entities.Task;
 import com.kalidratorma.yss.entities.TaskReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TaskReportRepository extends JpaRepository<TaskReport, Long> {
 
