@@ -18,8 +18,7 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "player",
-        indexes = {@Index(name = "IDX_PLAYER_NAME", columnList = "surname,name,patronymic")})
+@Table(name = "player")
 @JsonFilter("PlayerFilter")
 public class Player {
 

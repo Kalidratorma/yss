@@ -42,7 +42,8 @@ public class Team {
     /**
      * Год команды
      */
-    private short teamYear;
+    @OneToOne
+    private TeamYear teamYear;
 
     /**
      * Формат игры
