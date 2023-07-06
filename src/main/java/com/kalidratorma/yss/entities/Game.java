@@ -55,7 +55,7 @@ public class Game {
     /**
      * Сезон
      */
-    @OneToOne
+    @ManyToOne
     private Season season;
 
     /**
@@ -66,7 +66,7 @@ public class Game {
     /**
      * Год команды
      */
-    @OneToOne
+    @ManyToOne
     private TeamYear teamYear;
 
     /**
