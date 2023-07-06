@@ -102,7 +102,7 @@ public class Player {
     /**
      * Амплуа/позиция
      */
-    @OneToOne
+    @ManyToOne
     private Position position;
 
     /**
@@ -116,10 +116,4 @@ public class Player {
      */
     @OneToMany(cascade = {CascadeType.ALL})
     private List<Physiology> physiologyList;
-
-    /**
-     * Статистика
-     */
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Stat> stats;
 }
