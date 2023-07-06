@@ -50,6 +50,6 @@ public class ClubTeam {
     /**
      * Год команды
      */
-    @OneToOne
+    @ManyToOne
     private TeamYear teamYear;
 }

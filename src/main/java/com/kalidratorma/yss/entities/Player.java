@@ -96,7 +96,7 @@ public class Player {
     /**
      * Год команды
      */
-    @OneToOne
+    @ManyToOne
     private TeamYear teamYear;
 
     /**

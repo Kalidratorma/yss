@@ -72,6 +72,6 @@ public class Game {
     /**
      * Команда Соперника
      */
-    @OneToOne
+    @ManyToOne
     private ClubTeam clubTeam;
 }

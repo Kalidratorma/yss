@@ -42,7 +42,7 @@ public class Team {
     /**
      * Год команды
      */
-    @OneToOne
+    @ManyToOne
     private TeamYear teamYear;
 
     /**
