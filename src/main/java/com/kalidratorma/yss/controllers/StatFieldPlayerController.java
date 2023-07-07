@@ -1,14 +1,19 @@
 package com.kalidratorma.yss.controllers;
 
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.kalidratorma.yss.entities.StatFieldPlayer;
 import com.kalidratorma.yss.repositories.StatFieldPlayerRepository;
+import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static com.kalidratorma.yss.utils.ControllerUtils.getFilteredMapper;
 
 @RestController
 @CrossOrigin(originPatterns = "*")
@@ -19,8 +24,10 @@ public class StatFieldPlayerController {
     private final StatFieldPlayerRepository statFieldPlayerRepository;
 
     @GetMapping
-    public List<StatFieldPlayer> readStatFieldPlayers() {
-        return statFieldPlayerRepository.findAll();
+    public MappingJacksonValue readStatFieldPlayers() {
+        List<StatFieldPlayer> statFieldPlayerList = statFieldPlayerRepository.findAll();
+        return getFilteredMapper(statFieldPlayerList, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
     @PostMapping
@@ -30,24 +37,30 @@ public class StatFieldPlayerController {
     }
 
     @GetMapping("/{id}")
-    public StatFieldPlayer readStatFieldPlayer(@PathVariable long id) {
-        return statFieldPlayerRepository.findById(id).orElseThrow(
+    public MappingJacksonValue readStatFieldPlayer(@PathVariable long id) {
+        StatFieldPlayer statFieldPlayer = statFieldPlayerRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+        return  getFilteredMapper(statFieldPlayer, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
     @GetMapping("/byPlayer/{id}")
-    public List<StatFieldPlayer> findAllByPlayerId(@PathVariable long id) {
-        return statFieldPlayerRepository.findAllByPlayerId(id).orElseThrow(
+    public MappingJacksonValue findAllByPlayerId(@PathVariable long id) {
+        List<StatFieldPlayer> statFieldPlayerList = statFieldPlayerRepository.findAllByPlayerId(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+        return getFilteredMapper(statFieldPlayerList, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
     @GetMapping("/byGame/{id}")
-    public List<StatFieldPlayer> findAllByGameId(@PathVariable long id) {
-        return statFieldPlayerRepository.findAllByGameId(id).orElseThrow(
+    public MappingJacksonValue findAllByGameId(@PathVariable long id) {
+        List<StatFieldPlayer> statFieldPlayerList = statFieldPlayerRepository.findAllByGameId(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+        return getFilteredMapper(statFieldPlayerList, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
     @PutMapping
