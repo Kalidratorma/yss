@@ -79,6 +79,6 @@ public class Game {
     /**
      * Спортсмены
      */
-    @OneToMany
+    @ManyToMany
     private Set<Player> playerList;
 }
