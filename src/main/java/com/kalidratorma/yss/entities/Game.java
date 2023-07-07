@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 
 
 /**
@@ -74,4 +75,10 @@ public class Game {
      */
     @ManyToOne
     private ClubTeam clubTeam;
+
+    /**
+     * Спортсмены
+     */
+    @OneToMany
+    private Set<Player> playerList;
 }
