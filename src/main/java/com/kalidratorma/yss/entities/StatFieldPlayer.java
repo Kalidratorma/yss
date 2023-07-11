@@ -19,7 +19,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "stat_field_player")
+@Table(name = "stat_field_player",
+        uniqueConstraints={
+            @UniqueConstraint(columnNames = {"game_id", "player_id"})},
+        indexes = {@Index(name = "IDX_SFP_GAME_ID_PLAYER_ID", columnList = "game_id, player_id")})
 public class StatFieldPlayer {
 
     /**
