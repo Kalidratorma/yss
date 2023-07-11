@@ -14,25 +14,26 @@ import java.util.List;
 @Aspect
 public class LoggingAspect {
 
-    @Around("execution(* com.kalidratorma.yss.controllers.PlayerController.*(..))")
+    @Around("execution(* com.kalidratorma.yss.controllers.*.*(..))")
     public Object aroundAllSiteControllerMethodAdvice(
             ProceedingJoinPoint joinPoint) throws Throwable{
         MethodSignature methodSignature =
                 (MethodSignature) joinPoint.getSignature();
         String methodName = methodSignature.getName();
+        String className = methodSignature.getDeclaringTypeName();
         Logger logger = LoggerFactory.getLogger(methodSignature.getClass());
         List<String> params = List.of(methodSignature.getParameterNames());
         if (params.isEmpty()) {
-            logger.info("PlayerController method " + methodName + " called");
+            logger.info(className + " method " + methodName + " called");
         } else {
             StringBuffer paramsStringBuffer = new StringBuffer();
             params.forEach(s -> paramsStringBuffer.append(s).append("=[{}],"));
-            logger.info("PlayerController method " + methodName + " called with params "
+            logger.info(className + " method " + methodName + " called with params "
                             + paramsStringBuffer.deleteCharAt(paramsStringBuffer.length() - 1),
                     joinPoint.getArgs());
         }
         Object targetMethodResult = joinPoint.proceed();
-        logger.info("PlayerController method " + methodName + " ended");
+        logger.info(className + " method " + methodName + " ended");
         return targetMethodResult;
     }
 }
