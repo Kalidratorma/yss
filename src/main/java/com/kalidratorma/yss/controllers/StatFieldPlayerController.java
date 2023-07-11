@@ -63,6 +63,15 @@ public class StatFieldPlayerController {
                 SimpleBeanPropertyFilter.serializeAll()));
     }
 
+    @GetMapping("/byGame/{gameId}/byPlayer/{playerId}")
+    public MappingJacksonValue findAllByGameAndPlayerId(@PathVariable long gameId, @PathVariable long playerId) {
+        StatFieldPlayer statFieldPlayer = statFieldPlayerRepository.findAllByGameIdAndPlayerId(gameId, playerId).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+        );
+        return getFilteredMapper(statFieldPlayer, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
+    }
+
     @PutMapping
     public ResponseEntity<String> updateStatFieldPlayer(@RequestBody StatFieldPlayer statFieldPlayer) {
         statFieldPlayerRepository.findById(statFieldPlayer.getId()).orElseThrow(

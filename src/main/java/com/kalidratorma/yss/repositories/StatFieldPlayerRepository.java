@@ -16,4 +16,8 @@ public interface StatFieldPlayerRepository extends JpaRepository<StatFieldPlayer
     @Query("from StatFieldPlayer s inner join fetch s.game g where g.id = :id")
     Optional<List<StatFieldPlayer>> findAllByGameId(@Param("id") long id);
 
+    @Query("from StatFieldPlayer s " +
+            "join s.game g " +
+            "join s.player p where g.id = :gameId and p.id = :playerId")
+    Optional<StatFieldPlayer> findAllByGameIdAndPlayerId(long gameId, long playerId);
 }
