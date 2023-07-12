@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
 
@@ -54,6 +55,7 @@ public class StatFieldPlayer {
      * Дата
      */
     @Temporal(TemporalType.DATE)
+    @CreatedDate
     private LocalDate date;
 
     /**
