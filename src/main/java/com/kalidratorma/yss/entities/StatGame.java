@@ -1,6 +1,7 @@
 package com.kalidratorma.yss.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -84,10 +85,12 @@ public class StatGame {
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
+    @JsonIgnore
     private LocalDateTime createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
+    @JsonIgnore
     private LocalDateTime updatedAt;
 
     /**
