@@ -31,13 +31,19 @@ public class ContentFile {
     String name;
 
     /**
+     * Оригинальное имя файла
+     */
+    String originName;
+
+    /**
      * Локальный физический полный путь к файлу
      */
     @JsonIgnore
     String location;
 
-    public ContentFile(String name, String location) {
+    public ContentFile(String name, String originName, String location) {
         this.name = name;
+        this.originName = originName;
         this.location = location;
     }
 }

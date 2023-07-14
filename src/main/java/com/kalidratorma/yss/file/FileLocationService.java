@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,11 +20,11 @@ class FileLocationService {
         return contentFileRepository.findAll();
     }
 
-    ContentFile save(byte[] bytes, String extension) throws Exception {
+    ContentFile save(byte[] bytes, String extension, String originFileName) throws Exception {
         String uuid = java.util.UUID.randomUUID().toString();
         String imageNameWithDate = uuid + "." + extension;
         String location = fileSystemRepository.save(bytes, imageNameWithDate);
-        return contentFileRepository.save(new ContentFile(imageNameWithDate, location));
+        return contentFileRepository.save(new ContentFile(imageNameWithDate, originFileName, location));
     }
 
     FileSystemResource find(String fileName) {

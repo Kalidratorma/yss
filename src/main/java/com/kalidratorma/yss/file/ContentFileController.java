@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("file")
+@CrossOrigin("http://localhost:4200")
 @RequiredArgsConstructor
 class ContentFileController {
 
@@ -52,13 +53,13 @@ class ContentFileController {
                 extension = extensionSb.substring(extensionSb.lastIndexOf(".") + 1);
             }
 
-            contentFiles.add(fileLocationService.save(lFile.getBytes(), extension));
+            contentFiles.add(fileLocationService.save(lFile.getBytes(), extension, lFile.getOriginalFilename()));
         }
         return contentFiles;
     }
 
     @GetMapping(value = "/{fileName}.{ext}")
-    ResponseEntity<FileSystemResource> downloadImage(@PathVariable String fileName
+    ResponseEntity<FileSystemResource> downloadFile(@PathVariable String fileName
             , @PathVariable String ext
     ) {
         FileSystemResource fileResource = fileLocationService.find(fileName + "." + ext);
