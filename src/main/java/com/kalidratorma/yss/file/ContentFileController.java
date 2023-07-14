@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(originPatterns = "*")
 @RequestMapping("file")
 @RequiredArgsConstructor
 class ContentFileController {
