@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("file")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://kalidratorma.com")
 @RequiredArgsConstructor
 class ContentFileController {
 
