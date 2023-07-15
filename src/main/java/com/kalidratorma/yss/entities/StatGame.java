@@ -2,6 +2,7 @@ package com.kalidratorma.yss.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kalidratorma.yss.file.ContentFile;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Статистика игры
@@ -82,6 +84,12 @@ public class StatGame {
      * Количество минут штрафа соперника
      */
     private int penaltiesInMinutesAgainst;
+
+    /**
+     * Список файлов с протоколом
+     */
+    @OneToMany
+    private List<ContentFile> protocolFiles;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
