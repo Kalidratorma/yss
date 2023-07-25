@@ -9,7 +9,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Родитель (клиент)
@@ -88,5 +88,12 @@ public class Parent {
      * Договора
      */
     @ManyToMany
-    private List<Contract> contracts;
+    private Set<Contract> contracts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "player_parents",
+            joinColumns = @JoinColumn(name = "parents_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id"))
+    private Set<Player> playerList;
 }
