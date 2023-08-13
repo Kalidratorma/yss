@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class LoggingAspect {
 
-    @Around("execution(* com.kalidratorma.yss.file.ContentFile(..))")
+   // @Around("execution(* com.kalidratorma.yss.controllers.*.*(..))")
     public Object aroundAllSiteControllerMethodAdvice(
             ProceedingJoinPoint joinPoint) throws Throwable{
         MethodSignature methodSignature =
