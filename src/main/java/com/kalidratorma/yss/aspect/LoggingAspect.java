@@ -14,7 +14,7 @@ import java.util.List;
 @Aspect
 public class LoggingAspect {
 
-    @Around("execution(* com.kalidratorma.yss.controllers.*.*(..))")
+    @Around("execution(* com.kalidratorma.yss.file.ContentFile(..))")
     public Object aroundAllSiteControllerMethodAdvice(
             ProceedingJoinPoint joinPoint) throws Throwable{
         MethodSignature methodSignature =
