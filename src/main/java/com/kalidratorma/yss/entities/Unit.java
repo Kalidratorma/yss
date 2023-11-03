@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Игровое Звено
@@ -41,9 +41,9 @@ public class Unit {
     private byte unitNumber;
 
     /**
-     * Список игроков в звене
+     * Набор игроков в звене
      */
     @OneToMany
     @Column(nullable = false)
-    private List<Player> playerList;
+    private Set<Player> players;
 }

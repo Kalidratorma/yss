@@ -2,13 +2,11 @@ package com.kalidratorma.yss.entities;
 
 import com.kalidratorma.yss.security.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -90,10 +88,12 @@ public class Parent {
     @ManyToMany
     private Set<Contract> contracts;
 
+    /**
+     * Игроки
+     */
     @ManyToMany
-    @JoinTable(
-            name = "player_parents",
-            joinColumns = @JoinColumn(name = "parents_id"),
+    @JoinTable(name = "parent_player",
+            joinColumns = @JoinColumn(name = "parent_id"),
             inverseJoinColumns = @JoinColumn(name = "player_id"))
-    private Set<Player> playerList;
+    private Set<Player> players = new HashSet<>();
 }

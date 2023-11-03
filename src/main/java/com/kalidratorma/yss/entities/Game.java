@@ -80,5 +80,8 @@ public class Game {
      * Спортсмены
      */
     @ManyToMany
-    private Set<Player> playerList;
+    @JoinTable(name = "game_player",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id"))
+    private Set<Player> players;
 }

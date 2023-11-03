@@ -9,7 +9,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Спортсмен
@@ -82,12 +81,6 @@ public class Player {
      * Ограничения
      */
     private String restrictions;
-
-    /**
-     * Родители
-     */
-    @ManyToMany
-    private Set<Parent> parents;
 
     /**
      * Игровой номер

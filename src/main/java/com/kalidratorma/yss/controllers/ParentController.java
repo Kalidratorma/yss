@@ -1,14 +1,19 @@
 package com.kalidratorma.yss.controllers;
 
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.kalidratorma.yss.entities.Parent;
 import com.kalidratorma.yss.repositories.ParentRepository;
+import com.kalidratorma.yss.utils.CustomFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static com.kalidratorma.yss.utils.ControllerUtils.getFilteredMapper;
 
 @RestController
 @CrossOrigin(originPatterns = "*")
@@ -19,8 +24,10 @@ public class ParentController {
     private final ParentRepository parentRepository;
 
     @GetMapping
-    public List<Parent> readParents() {
-        return parentRepository.findAll();
+    public MappingJacksonValue readParents() {
+        List<Parent> parentList = parentRepository.findAll();
+        return getFilteredMapper(parentList, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
     @PostMapping
@@ -30,10 +37,13 @@ public class ParentController {
     }
 
     @GetMapping("/{id}")
-    public Parent readParent(@PathVariable long id) {
-        return parentRepository.findById(id).orElseThrow(
+    public MappingJacksonValue readParent(@PathVariable long id) {
+        Parent parent = parentRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+
+        return getFilteredMapper(parent, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
     @PutMapping
@@ -53,10 +63,12 @@ public class ParentController {
     }
 
     @GetMapping("/byUser/{userId}")
-    public Parent readCoachByUserId(@PathVariable long userId) {
-        return parentRepository.findParentByUserId(userId).orElseThrow(
+    public MappingJacksonValue readParentByUserId(@PathVariable long userId) {
+        Parent parent = parentRepository.findParentByUserId(userId).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+        return getFilteredMapper(parent, new CustomFilter("PlayerFilter",
+                SimpleBeanPropertyFilter.serializeAll()));
     }
 
 }

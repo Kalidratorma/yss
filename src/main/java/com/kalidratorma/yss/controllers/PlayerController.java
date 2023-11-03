@@ -52,14 +52,6 @@ public class PlayerController {
                 SimpleBeanPropertyFilter.serializeAll()));
     }
 
-    @GetMapping("/byParent/{id}")
-    public MappingJacksonValue readPlayersByParentId(@PathVariable long id) {
-        List<Player> players = playerRepository.findPlayersByParentId(id);
-
-        return getFilteredMapper(players, new CustomFilter("PlayerFilter",
-                SimpleBeanPropertyFilter.serializeAll()));
-    }
-
     @PutMapping
     public ResponseEntity<String> updatePlayer(@RequestBody Player player) {
         Player origPlayer = playerRepository.findByName(player.getName()).orElseThrow(
@@ -68,14 +60,9 @@ public class PlayerController {
         userRepository
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow();
         ResponseEntity<String> response;
-//        if (user.getAuthorities().contains(new SimpleGrantedAuthority(Role.ADMIN.name()))
-//                || user.getPlayers().contains(origPlayer)) {
         player.setId(origPlayer.getId());
         playerRepository.save(player);
         response = new ResponseEntity<>(HttpStatus.OK);
-//        } else {
-//            response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
         return response;
     }
 
