@@ -45,7 +45,7 @@ public class Training {
      * Команда
      */
     @ManyToOne
-    private Team team;
+    private TeamYear teamYear;
 
     /**
      * Дата тренировки
